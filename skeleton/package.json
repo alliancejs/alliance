@@ -1,0 +1,16 @@
+{
+  "name":"application",
+  "version":"1.0.0",
+  "description":"Alliance Application",
+  "author":"Author Name <your@email.com>",
+  "dependencies":{
+    "alliance-bundle":"0.0.20-alpha.13"
+  },
+  "typings":"./typings/tsd.d.ts",
+  "typescript":{
+    "definitions":[
+      "typings/tsd.d.ts"
+    ]
+  },
+  "license":"MIT"
+}

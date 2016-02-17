@@ -1,0 +1,32 @@
+import { Controller, Action } from 'alliance/core';
+import { AppController } from './AppController';
+
+/**
+ * {{name}} controller
+ */
+
+{{#if base}}
+@Controller({
+    base: '{{base}}'
+})
+{{else}}
+@Controller
+{{/if}}
+export class {{name}}Controller extends AppController {
+
+    {{#if actions}}
+    {{#actions}}
+    /**
+     * {{name}} action
+     */
+    @Action('{{url}}')
+    public {{name}}(): void {
+        // {{name}} action code
+    }
+
+    {{/actions}}
+    {{else}}
+    // controller methods
+
+    {{/if}}
+}

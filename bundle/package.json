@@ -1,0 +1,19 @@
+{
+  "name":"alliance-bundle",
+  "version":"0.0.20-alpha.13",
+  "description":"Alliance Framework bundle",
+  "author":"Eugene Pisotsky <revanscript@gmail.com>",
+  "dependencies":{
+    "express":"^4.13.4",
+    "express-handlebars":"^2.0.1",
+    "sequelize":"^3.14.2",
+    "reflect-metadata":"^0.1.2"
+  },
+  "typings":"./typings/tsd.d.ts",
+  "typescript":{
+    "definitions":[
+      "typings/tsd.d.ts"
+    ]
+  },
+  "license":"MIT"
+}

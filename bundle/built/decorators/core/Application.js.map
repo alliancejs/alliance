@@ -1,0 +1,1 @@
+{"version":3,"sources":["decorators/core/Application.ts"],"names":["Application"],"mappings":";;AAAA,SAAA,WAAA,CAA4B,MAAW,EAAA,EAItCA;AAJe,OAAA,CAAA,WAAW,GAAA,WAI1B,CAAA","file":"decorators/core/Application.js","sourcesContent":["export function Application(target: any) {\n    /**\n     * Application decorator\n     */\n}\n"],"sourceRoot":"/source/"}

@@ -1,0 +1,22 @@
+language: node_js
+
+node_js:
+  - "4.1"
+  - "4.0"
+
+env:
+  matrix:
+    - DB=mysql db_dsn='mysql://travis@0.0.0.0/cakephp_test'
+    - DB=pgsql db_dsn='postgres://postgres@127.0.0.1/cakephp_test'
+    - DB=sqlite db_dsn='sqlite:///:memory:'
+  global:
+    - DEFAULT=1
+
+before_script:
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE alliance_test;'; fi"
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE alliance_test2;'; fi"
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE alliance_test3;'; fi"
+
+  - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE DATABASE alliance_test;' -U postgres; fi"
+  - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE SCHEMA test2;' -U postgres -d alliance_test; fi"
+  - sh -c "if [ '$DB' = 'pgsql' ]; then psql -c 'CREATE SCHEMA test3;' -U postgres -d alliance_test; fi"

@@ -1,0 +1,20 @@
+import { AbstractShell, Shell, Command } from 'alliance/shell';
+
+@Shell('test')
+export class TestShell extends AbstractShell {
+
+    /**
+     * Run shell: alliance shell test sync
+     */
+    @Command({
+        description: 'Sync latest news',
+        options: [
+            ['--today', 'Sync today'],
+            ['--date [date]', 'Sync by date'],
+        ]
+    })
+    public sync(): void {
+        // command code
+    }
+
+}

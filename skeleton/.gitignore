@@ -1,0 +1,4 @@
+/tmp/*
+/app/configs/app.config.ts
+/logs/*
+/node_modules/*

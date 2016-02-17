@@ -1,0 +1,1 @@
+{"version":3,"sources":["views.ts"],"names":["Helper"],"mappings":";;AAAA,SAAA,MAAA,CAAuB,MAAW,EAAA,EAEjCA;AAFe,OAAA,CAAA,MAAM,GAAA,MAErB,CAAA","file":"views.js","sourcesContent":["export function Helper(target: any) {\n    // console.log('register helper');\n}\n"],"sourceRoot":"/source/"}

@@ -1,0 +1,71 @@
+<!-- Jumbotron Header -->
+<header class="jumbotron hero-spacer">
+    <h1>Welcome to Alliance!</h1>
+    <p>{{jumbotronText}}</p>
+    <p><a class="btn btn-primary btn-large" href="https://github.com/alliancejs/alliance" target="_blank">Fork Alliance on Github &raquo;</a>
+    </p>
+</header>
+
+<hr>
+
+<!-- Title -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3>What's next</h3>
+    </div>
+</div>
+
+<ul>
+    <li>Implement new actions in <b>app/src/controllers/index.controller.ts</b>, and create corresponding views under <b>app/src/views/index</b></li>
+    <li>Create new controllers and actions in <b>app/src/controllers</b></li>
+    <li>
+        If your application should be driven by database, do the following:<br /><br />
+
+        <ul>
+            <li>
+                <p>Install one of the following dialects:</p>
+
+                <code style="display: block">
+                $ npm install --save pg pg-hstore<br />
+                $ npm install --save mysql // For both mysql and mariadb dialects<br />
+                $ npm install --save sqlite3<br />
+                $ npm install --save tedious // MSSQL<br />
+                </code>
+
+                <br />
+            </li>
+            <li>Set up database connection by configuring the <code>datasource.default</code> section in <b>app/configs/app.json</b></li>
+            <li>Create model classes under the directory <b>app/src/models</b></li>
+        </ul>
+    </li>
+</ul>
+
+<!-- Title -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Alliance uses the following frameworks and technologies</h3>
+    </div>
+</div>
+<br />
+<!-- /.row -->
+
+<!-- Page Features -->
+<div class="row text-center">
+
+    {{#each frameworks}}
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="thumbnail">
+            <img src="{{logo}}" alt="">
+            <div class="caption">
+                <h3>{{title}}</h3>
+                <p>{{description}}</p>
+                <p>
+                    <a href="{{link}}" target="_blank" class="btn btn-primary">Project website</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+
+</div>
+<!-- /.row -->
