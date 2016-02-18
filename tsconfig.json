@@ -12,8 +12,7 @@
     },
     "filesGlob": [
         "./src/**/*.ts",
-        "./bundle/typings/tsd.d.ts",
-        "./bundle/typings/alliance.d.ts"
+        "./bundle/alliance.d.ts"
     ],
     "compileOnSave": false,
     "buildOnSave": false,

@@ -18,7 +18,7 @@ export class ControllerDecorator {
     }
 }
 
-export function Route(path: string, options: Object) {
+export function Route(path: string, options?: Object) {
     let actionClass: Router;
     let actionPath: string = path;
 

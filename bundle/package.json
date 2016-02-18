@@ -9,10 +9,10 @@
     "sequelize":"^3.14.2",
     "reflect-metadata":"^0.1.2"
   },
-  "typings":"./typings/tsd.d.ts",
+  "typings":"./alliance.d.ts",
   "typescript":{
     "definitions":[
-      "typings/tsd.d.ts"
+      "alliance.d.ts"
     ]
   },
   "license":"MIT"
