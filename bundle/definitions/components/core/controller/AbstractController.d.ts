@@ -6,7 +6,7 @@ export declare abstract class AbstractController {
     app: express.Express;
     response: express.Response;
     request: express.Request;
-    meta: Object;
+    meta: any;
     constructor();
     set(key: string | Object, value?: string): void;
 }

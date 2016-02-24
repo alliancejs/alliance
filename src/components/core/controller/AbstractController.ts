@@ -22,7 +22,7 @@ export abstract class AbstractController {
     app: express.Express;
     response: express.Response;
     request: express.Request;
-    meta: Object = {};
+    meta: any = {};
 
     constructor () {}
 

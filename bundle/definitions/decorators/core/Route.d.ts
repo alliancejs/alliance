@@ -1,11 +1,7 @@
-export declare enum RouteType {
-    Action = 0,
-    Controller = 1,
+export declare const allianceRoutes: symbol;
+export declare const allianceBasePath: symbol;
+export interface allianceRoute {
+    path: string;
+    key: string;
 }
-export declare class ActionDecorator {
-    constructor(target: any, key: any, before: Function, after?: Function);
-}
-export declare class ControllerDecorator {
-    constructor(target: any, before: Function, after?: Function);
-}
-export declare function Route(path: string, options?: Object): (target: any, key?: any) => void;
+export declare function Route(path: string, methods?: string[]): (target: any, key?: string, descriptor?: TypedPropertyDescriptor<any>) => void;

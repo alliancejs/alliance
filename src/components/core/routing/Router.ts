@@ -13,29 +13,55 @@
 
 import * as express  from 'express';
 import * as path from 'path';
-import { controllerBuilder, server } from '../../Bundle';
-import { RouteType } from '../../../decorators/core/Route';
+import * as bodyParser from 'body-parser';
+import { allianceBodyParser } from '../../../decorators/core/ParamTypes';
+import { RouteParams } from './RouteParams';
+import { server } from '../../Bundle';
 import { Log } from '../debug/Log';
 import {
     DecoratedController,
     ActionDefinition
 } from '../interfaces/core';
 
-export class Router {
+export class Route {
 
+    actionClass: any;
+
+    constructor(path, context, key) {
+        if (Reflect.hasMetadata(allianceBodyParser, context.prototype, key)) {
+            server.express.use(path, bodyParser.json());
+        }
+
+        server.express.all(path, (req, res, next) => {
+            this.actionClass = new RouteResponse(context, key, req, res, next);
+            this.actionClass.execute();
+        });
+
+        server.express.all(path, (req, res) => {
+            this.actionClass.render(req, res);
+        });
+    }
+
+}
+
+export class RouteResponse {
+
+    controller: any;
     actionResult: Promise<any>;
     actionResultValue: any;
     context: Object;
     viewPath: string;
 
-    constructor(public controller: any,
+    constructor(public target: any,
                 public key: any,
                 public req: express.Request,
                 public res: express.Response,
                 public next: any) {
 
-        controller.request = req;
-        controller.response = res;
+        this.controller = new target();
+
+        this.controller.request = req;
+        this.controller.response = res;
 
         this.controller.app = server.express;
     }
@@ -44,6 +70,15 @@ export class Router {
      * Execute action method and call express next
      */
     public execute(): void {
+        this.actionResult = this.controller[this.key](
+            ...new RouteParams(
+                this.target.prototype,
+                this.controller[this.key],
+                this.controller.request,
+                this.key
+            ).build()
+        );
+
         if (this.actionResult instanceof Promise) {
             this.actionResult.then(result => {
                 this.actionResultValue = result;

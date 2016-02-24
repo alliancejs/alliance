@@ -12,3 +12,4 @@
 /// <reference path="express-handlebars/express-handlebars.d.ts" />
 /// <reference path="lodash/lodash-3.10.d.ts" />
 /// <reference path="commander/commander.d.ts" />
+/// <reference path="body-parser/body-parser.d.ts" />

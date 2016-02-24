@@ -7,6 +7,9 @@ declare module 'alliance/core' {
     export { Inject } from 'alliance/core/decorators/core/Inject';
     export { Controller } from 'alliance/core/decorators/core/Controller';
     export { Route } from 'alliance/core/decorators/core/Route';
+    export { PathVariable } from 'alliance/core/decorators/core/PathVariable';
+    export { RequestParam } from 'alliance/core/decorators/core/RequestParam';
+    export { BodyParam } from 'alliance/core/decorators/core/BodyParam';
     export { AbstractController } from 'alliance/core/components/core/controller/AbstractController';
     export { Log } from 'alliance/core/components/core/debug/Log';
 }
@@ -16,7 +19,7 @@ declare module 'alliance/core/decorators/core/Application' {
 }
 
 declare module 'alliance/core/decorators/core/Inject' {
-    export function Inject(target: any, key: string): void;
+    export function Inject(target: any, propertyKey: string | symbol, parameterIndex?: number): void;
 }
 
 declare module 'alliance/core/decorators/core/Controller' {
@@ -24,17 +27,25 @@ declare module 'alliance/core/decorators/core/Controller' {
 }
 
 declare module 'alliance/core/decorators/core/Route' {
-    export enum RouteType {
-        Action = 0,
-        Controller = 1,
+    export const allianceRoutes: symbol;
+    export const allianceBasePath: symbol;
+    export interface allianceRoute {
+        path: string;
+        key: string;
     }
-    export class ActionDecorator {
-        constructor(target: any, key: any, before: Function, after?: Function);
-    }
-    export class ControllerDecorator {
-        constructor(target: any, before: Function, after?: Function);
-    }
-    export function Route(path: string, options?: Object): (target: any, key?: any) => void;
+    export function Route(path: string, methods?: string[]): (target: any, key?: string, descriptor?: TypedPropertyDescriptor<any>) => void;
+}
+
+declare module 'alliance/core/decorators/core/PathVariable' {
+    export function PathVariable(target: Object, propertyKey: string | symbol, parameterIndex: number): void;
+}
+
+declare module 'alliance/core/decorators/core/RequestParam' {
+    export function RequestParam(target: Object, propertyKey: string | symbol, parameterIndex: number): void;
+}
+
+declare module 'alliance/core/decorators/core/BodyParam' {
+    export function BodyParam(target: Object, propertyKey: string | symbol, parameterIndex: number): void;
 }
 
 declare module 'alliance/core/components/core/controller/AbstractController' {
@@ -46,7 +57,7 @@ declare module 'alliance/core/components/core/controller/AbstractController' {
         app: express.Express;
         response: express.Response;
         request: express.Request;
-        meta: Object;
+        meta: any;
         constructor();
         set(key: string | Object, value?: string): void;
     }

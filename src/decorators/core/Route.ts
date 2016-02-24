@@ -1,64 +1,28 @@
-import { DecoratorCallback } from 'alliance/core';
-import { controllerBuilder, server } from '../../components/Bundle';
-import { Router } from '../../components/core/routing/Router';
+import { AbstractController } from '../../components/core/controller/AbstractController';
+import { server } from '../../components/Bundle';
 
-export enum RouteType { Action, Controller }
-
-export class ActionDecorator {
-    constructor(target, key, before: Function, after?: Function) {
-        controllerBuilder.registerActionDecorator(target, key, before, after);
-        return () => void 0;
-    }
+export const allianceRoutes = Symbol("allianceRoutes");
+export const allianceBasePath = Symbol("allianceBasePath");
+export interface allianceRoute {
+    path: string;
+    key: string;
 }
 
-export class ControllerDecorator {
-    constructor(target, before: Function, after?: Function) {
-        controllerBuilder.registerControllerDecorator(target, before, after);
-        return () => void 0;
-    }
-}
+export function Route(path: string, methods: string[] = ['GET']) {
+    return (target: any, key?: string, descriptor?: TypedPropertyDescriptor<any>) => {
 
-export function Route(path: string, options?: Object) {
-    let actionClass: Router;
-    let actionPath: string = path;
-
-    let callbacks: { before: (type) => DecoratorCallback, after: DecoratorCallback } = {
-            before: type =>
-                    pipe => {
-
-                if (type === RouteType.Action) {
-                    if (pipe.context.meta._routeBasePath) {
-                        actionPath = pipe.context.meta._routeBasePath + actionPath;
-                    }
-
-                    server.express.all(actionPath, (req, res, expressNext) => {
-                        actionClass = new Router(pipe.context, pipe.key, req, res, expressNext);
-                        pipe.next();
-                    });
-                } else {
-                    pipe.context.meta._routeBasePath = path;
-                    pipe.next();
-                }
-
-            },
-
-            after: pipe => {
-                actionClass.actionResult = pipe.result;
-
-                server.express.all(actionPath, (req, res) => {
-                    actionClass.render(req, res);
-                    pipe.next();
-                });
-
-                actionClass.execute();
-            }
-        };
-
-    return (target, key?) => {
         if (key) {
-            new ActionDecorator(target, key, callbacks.before(RouteType.Action), callbacks.after)
+            let routes: allianceRoute[] = Reflect.getMetadata(allianceRoutes, target) || [];
+
+            routes.push({
+                path: path,
+                key: key
+            });
+
+            Reflect.defineMetadata(allianceRoutes, routes, target);
         } else {
-            new ControllerDecorator(target, callbacks.before(RouteType.Controller))
+            Reflect.defineMetadata(allianceBasePath, path, target);
         }
+
     }
 }

@@ -4,35 +4,62 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var path = require('path');
+var bodyParser = require('body-parser');
+var ParamTypes_1 = require('../../../decorators/core/ParamTypes');
+var RouteParams_1 = require('./RouteParams');
 var Bundle_1 = require('../../Bundle');
 var Log_1 = require('../debug/Log');
 
-var Router = (function () {
-    function Router(controller, key, req, res, next) {
-        _classCallCheck(this, Router);
+var Route = function Route(path, context, key) {
+    var _this = this;
 
-        this.controller = controller;
+    _classCallCheck(this, Route);
+
+    if (Reflect.hasMetadata(ParamTypes_1.allianceBodyParser, context.prototype, key)) {
+        Bundle_1.server.express.use(path, bodyParser.json());
+    }
+    Bundle_1.server.express.all(path, function (req, res, next) {
+        _this.actionClass = new RouteResponse(context, key, req, res, next);
+        _this.actionClass.execute();
+    });
+    Bundle_1.server.express.all(path, function (req, res) {
+        _this.actionClass.render(req, res);
+    });
+};
+
+exports.Route = Route;
+
+var RouteResponse = (function () {
+    function RouteResponse(target, key, req, res, next) {
+        _classCallCheck(this, RouteResponse);
+
+        this.target = target;
         this.key = key;
         this.req = req;
         this.res = res;
         this.next = next;
-        controller.request = req;
-        controller.response = res;
+        this.controller = new target();
+        this.controller.request = req;
+        this.controller.response = res;
         this.controller.app = Bundle_1.server.express;
     }
 
-    _createClass(Router, [{
+    _createClass(RouteResponse, [{
         key: 'execute',
         value: function execute() {
-            var _this = this;
+            var _controller,
+                _this2 = this;
 
+            this.actionResult = (_controller = this.controller)[this.key].apply(_controller, _toConsumableArray(new RouteParams_1.RouteParams(this.target.prototype, this.controller[this.key], this.controller.request, this.key).build()));
             if (this.actionResult instanceof Promise) {
                 this.actionResult.then(function (result) {
-                    _this.actionResultValue = result;
-                    _this.next();
+                    _this2.actionResultValue = result;
+                    _this2.next();
                 });
             } else {
                 this.actionResultValue = this.actionResult;
@@ -91,8 +118,8 @@ var Router = (function () {
         }
     }]);
 
-    return Router;
+    return RouteResponse;
 })();
 
-exports.Router = Router;
+exports.RouteResponse = RouteResponse;
 //# sourceMappingURL=Router.js.map
