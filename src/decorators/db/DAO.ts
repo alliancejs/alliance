@@ -1,4 +1,4 @@
-import { database } from '../../components/database/database/Database';
+import { database } from '../../components/database/database/database';
 
 export function DAO(table: any) {
     return (target) => {

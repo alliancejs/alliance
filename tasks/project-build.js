@@ -13,7 +13,7 @@ module.exports = function() {
         path.join(allianceTaskOptions.path, 'app', '**', '*'),
         path.join(allianceTaskOptions.path, 'typings', '**', '*.d.ts'),
         path.join(allianceTaskOptions.path, 'node_modules', 'alliance-bundle', 'typings', 'tsd.d.ts'),
-        path.join(allianceTaskOptions.path, 'node_modules', 'alliance-bundle', 'typings', 'alliance.d.ts')
+        path.join(allianceTaskOptions.path, 'node_modules', 'alliance-bundle', 'alliance.d.ts')
     ])
     .pipe(sourcemaps.init())
     .pipe(ts(tsProject, {}, reporter()))

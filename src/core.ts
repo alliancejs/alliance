@@ -1,14 +1,14 @@
 // decorators
-export { Application } from './decorators/core/Application';
-export { Inject } from './decorators/core/Inject';
-export { Controller } from './decorators/core/Controller';
-export { Route } from './decorators/core/Route';
-export { PathVariable } from './decorators/core/PathVariable';
-export { RequestParam } from './decorators/core/RequestParam';
-export { BodyParam } from './decorators/core/BodyParam';
+export { Application } from './decorators/core/application';
+export { Inject } from './decorators/core/inject'
+export { Controller } from './decorators/core/controller';
+export { Route } from './decorators/core/route';
+export { PathVariable } from './decorators/core/pathVariable';
+export { RequestParam } from './decorators/core/requestParam';
+export { BodyParam } from './decorators/core/bodyParam';
 
 // abstract classes
-export { AbstractController } from './components/core/controller/AbstractController';
+export { AbstractController } from './components/core/controller/abstractController';
 
 // other
-export { Log } from './components/core/debug/Log';
+export { Log } from './components/core/debug/log';

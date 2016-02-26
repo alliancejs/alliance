@@ -15,8 +15,9 @@ var process = require('process'),
 module.exports = function() {
     var srcPath = [
         path.join(allianceTaskOptions.path, 'app', '**', '*'),
-        path.join(allianceTaskOptions.path, 'typings', '**', 'tsd.d.ts'),
-        path.join(allianceTaskOptions.path, 'typings', '**', 'alliance.d.ts')
+        path.join(allianceTaskOptions.path, 'typings', '**', '*.d.ts'),
+        path.join(allianceTaskOptions.path, 'node_modules', 'alliance-bundle', 'typings', 'tsd.d.ts'),
+        path.join(allianceTaskOptions.path, 'node_modules', 'alliance-bundle', 'alliance.d.ts')
     ];
 
     watch(srcPath, function (file) {

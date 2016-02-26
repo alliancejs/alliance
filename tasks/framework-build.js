@@ -14,7 +14,8 @@ var process = require('process'),
 module.exports = function() {
 	var result = gulp.src([
         path.join(__dirname, '..', 'src', '**', '*'),
-        path.join(__dirname, '..', 'bundle', 'typings', '**', '*.ts')
+        path.join(__dirname, '..', 'bundle', 'typings', '**', '*.ts'),
+        path.join(__dirname, '..', 'bundle', 'alliance.d.ts')
     ])
     .pipe(sourcemaps.init())
     .pipe(ts(tsProject, {

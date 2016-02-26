@@ -1,9 +1,9 @@
 'use strict';
 
-var Database_1 = require('../../components/database/database/Database');
+var database_1 = require('../../components/database/database/database');
 function DAO(table) {
     return function (target) {
-        Database_1.database.registerModel(target, table);
+        database_1.database.registerModel(target, table);
         return target;
     };
 }

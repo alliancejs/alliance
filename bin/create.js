@@ -64,7 +64,7 @@ module.exports = function(method, name, options) {
 
             if (options.actions) {
                 options.actions.split(' ').forEach(function(v, i) {
-                    var action = v.split('@');
+                    var action = v.split('=');
 
                     context.actions.push({
                         url: action[1],
@@ -74,7 +74,7 @@ module.exports = function(method, name, options) {
             }
 
             var result = template(context);
-            var filePath = path.join('app', 'src', 'controllers', name.toCamelCase().toUpperCaseFirstChar() + 'Controller.ts');
+            var filePath = path.join('app', 'src', 'controllers', name.toCamelCase() + '.controller.ts');
 
             writeFile(filePath, result);
         },
@@ -99,8 +99,8 @@ module.exports = function(method, name, options) {
 
                 modelsPath = path.join('app', 'src', 'models');
 
-            writeFile(path.join(modelsPath, 'DAO', name.toCamelCase().toUpperCaseFirstChar() + 'DAO.ts'), resultModel);
-            writeFile(path.join(modelsPath, 'tables', name.toCamelCase().toUpperCaseFirstChar() + 'Table.ts'), resultTable);
+            writeFile(path.join(modelsPath, 'DAO', name.toCamelCase() + '.dao.ts'), resultModel);
+            writeFile(path.join(modelsPath, 'tables', name.toCamelCase() + '.table.ts'), resultTable);
         },
 
         /**
@@ -125,7 +125,7 @@ module.exports = function(method, name, options) {
                 };
 
             var result = template(context);
-            var filePath = path.join('app', 'src', 'models', 'migrations', id + '_' + name.toCamelCase().toUpperCaseFirstChar() + 'Migration.ts');
+            var filePath = path.join('app', 'src', 'models', 'migrations', id + '_' + name.toCamelCase() + '.migration.ts');
 
             writeFile(filePath, result);
         },

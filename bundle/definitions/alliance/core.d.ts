@@ -3,30 +3,30 @@
 //   ../../express
 
 declare module 'alliance/core' {
-    export { Application } from 'alliance/core/decorators/core/Application';
-    export { Inject } from 'alliance/core/decorators/core/Inject';
-    export { Controller } from 'alliance/core/decorators/core/Controller';
-    export { Route } from 'alliance/core/decorators/core/Route';
-    export { PathVariable } from 'alliance/core/decorators/core/PathVariable';
-    export { RequestParam } from 'alliance/core/decorators/core/RequestParam';
-    export { BodyParam } from 'alliance/core/decorators/core/BodyParam';
-    export { AbstractController } from 'alliance/core/components/core/controller/AbstractController';
-    export { Log } from 'alliance/core/components/core/debug/Log';
+    export { Application } from 'alliance/core/decorators/core/application';
+    export { Inject } from 'alliance/core/decorators/core/inject';
+    export { Controller } from 'alliance/core/decorators/core/controller';
+    export { Route } from 'alliance/core/decorators/core/route';
+    export { PathVariable } from 'alliance/core/decorators/core/pathVariable';
+    export { RequestParam } from 'alliance/core/decorators/core/requestParam';
+    export { BodyParam } from 'alliance/core/decorators/core/bodyParam';
+    export { AbstractController } from 'alliance/core/components/core/controller/abstractController';
+    export { Log } from 'alliance/core/components/core/debug/log';
 }
 
-declare module 'alliance/core/decorators/core/Application' {
+declare module 'alliance/core/decorators/core/application' {
     export function Application(target: any): void;
 }
 
-declare module 'alliance/core/decorators/core/Inject' {
+declare module 'alliance/core/decorators/core/inject' {
     export function Inject(target: any, propertyKey: string | symbol, parameterIndex?: number): void;
 }
 
-declare module 'alliance/core/decorators/core/Controller' {
+declare module 'alliance/core/decorators/core/controller' {
     export function Controller(target: any): void;
 }
 
-declare module 'alliance/core/decorators/core/Route' {
+declare module 'alliance/core/decorators/core/route' {
     export const allianceRoutes: symbol;
     export const allianceBasePath: symbol;
     export interface allianceRoute {
@@ -36,19 +36,19 @@ declare module 'alliance/core/decorators/core/Route' {
     export function Route(path: string, methods?: string[]): (target: any, key?: string, descriptor?: TypedPropertyDescriptor<any>) => void;
 }
 
-declare module 'alliance/core/decorators/core/PathVariable' {
+declare module 'alliance/core/decorators/core/pathVariable' {
     export function PathVariable(target: Object, propertyKey: string | symbol, parameterIndex: number): void;
 }
 
-declare module 'alliance/core/decorators/core/RequestParam' {
+declare module 'alliance/core/decorators/core/requestParam' {
     export function RequestParam(target: Object, propertyKey: string | symbol, parameterIndex: number): void;
 }
 
-declare module 'alliance/core/decorators/core/BodyParam' {
+declare module 'alliance/core/decorators/core/bodyParam' {
     export function BodyParam(target: Object, propertyKey: string | symbol, parameterIndex: number): void;
 }
 
-declare module 'alliance/core/components/core/controller/AbstractController' {
+declare module 'alliance/core/components/core/controller/abstractController' {
     import * as express from 'express';
     export abstract class AbstractController {
         template: string;
@@ -63,7 +63,7 @@ declare module 'alliance/core/components/core/controller/AbstractController' {
     }
 }
 
-declare module 'alliance/core/components/core/debug/Log' {
+declare module 'alliance/core/components/core/debug/log' {
     export class Log {
         static message(...message: any[]): void;
         static warning(...message: any[]): void;

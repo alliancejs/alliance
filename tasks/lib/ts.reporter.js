@@ -1,4 +1,5 @@
 var gutil = require('gulp-util');
+var semanticCounterFix = 0;
 
 function defaultFinishHandler(results) {
     var hasError = false;
@@ -11,7 +12,7 @@ function defaultFinishHandler(results) {
     showErrorCount(results.transpileErrors, '');
     showErrorCount(results.syntaxErrors, 'syntax');
     showErrorCount(results.globalErrors, 'global');
-    showErrorCount(results.semanticErrors, 'semantic');
+    showErrorCount(results.semanticErrors - semanticCounterFix, 'semantic');
     showErrorCount(results.emitErrors, 'emit');
     if (results.emitSkipped) {
         gutil.log('TypeScript: emit', gutil.colors.red('failed'));
@@ -26,8 +27,11 @@ var errorShowed = false;
 module.exports = function() {
     return {
         error: function (error) {
-            if ([2300, 2375, 2374].indexOf(error.diagnostic.code) < 0)
+            if ([2300, 2375, 2374].indexOf(error.diagnostic.code) < 0) {
                 console.error(error.message);
+            } else {
+                semanticCounterFix++;
+            }
         },
         finish: defaultFinishHandler
     };

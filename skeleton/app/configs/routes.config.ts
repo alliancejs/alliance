@@ -12,4 +12,9 @@ export default <Routes> {
      *     controller: 'IndexController.view'
      * }
      */
+
+     'GET /view/:id': {
+         controller: 'IndexController',
+         action: 'index'
+     }
 };

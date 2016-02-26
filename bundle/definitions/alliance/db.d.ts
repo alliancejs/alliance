@@ -4,21 +4,21 @@
 
 declare module 'alliance/db' {
     import * as Sequelize from 'sequelize';
-    export { Table } from 'alliance/db/decorators/db/Table';
-    export { hasOne, hasMany, belongsTo, belongsToMany } from 'alliance/db/decorators/db/Relationships';
+    export { Table } from 'alliance/db/decorators/db/table';
+    export { hasOne, hasMany, belongsTo, belongsToMany } from 'alliance/db/decorators/db/relationships';
     export { DAO } from 'alliance/db/decorators/db/DAO';
-    export { AbstractDAO } from 'alliance/db/components/database/DAO/AbstractDAO';
-    export { Query } from 'alliance/db/components/database/database/Query';
+    export { AbstractDAO } from 'alliance/db/components/database/DAO/abstractDAO';
+    export { Query } from 'alliance/db/components/database/database/query';
     export { Sequelize as db };
-    export { Column } from 'alliance/db/components/database/database/Columns';
-    export { ColumnType } from 'alliance/db/components/database/database/Columns';
+    export { Column } from 'alliance/db/components/database/database/columns';
+    export { ColumnType } from 'alliance/db/components/database/database/columns';
 }
 
-declare module 'alliance/db/decorators/db/Table' {
+declare module 'alliance/db/decorators/db/table' {
     export function Table(target: any): (t: any) => void;
 }
 
-declare module 'alliance/db/decorators/db/Relationships' {
+declare module 'alliance/db/decorators/db/relationships' {
     export function hasMany(target: Function, key?: string): (t: any, k: any) => void;
     export function hasOne(target: Function, key?: string): (t: any, k: any) => void;
     export function belongsTo(target: Function, key?: string): (t: any, k: any) => void;
@@ -29,7 +29,7 @@ declare module 'alliance/db/decorators/db/DAO' {
     export function DAO(table: any): (target: any) => any;
 }
 
-declare module 'alliance/db/components/database/DAO/AbstractDAO' {
+declare module 'alliance/db/components/database/DAO/abstractDAO' {
     import * as Sequelize from 'sequelize';
     export abstract class AbstractDAO<T> {
         schema: T;
@@ -37,11 +37,11 @@ declare module 'alliance/db/components/database/DAO/AbstractDAO' {
     }
 }
 
-declare module 'alliance/db/components/database/database/Query' {
+declare module 'alliance/db/components/database/database/query' {
     export function Query(table: any): any;
 }
 
-declare module 'alliance/db/components/database/database/Columns' {
+declare module 'alliance/db/components/database/database/columns' {
     export let Column: Object;
     export let ColumnType: Object;
 }

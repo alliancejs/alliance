@@ -15,12 +15,7 @@ gulp.task('project-watch', function() { return require('./tasks/project-watch')(
 
 // Framework tasks
 gulp.task('framework-build', ['framework-build-base'], function() {
-    ['core', 'db', 'shell', 'views'].forEach(function(val) {
-        dts.bundle({
-            name: 'alliance/' + val,
-            main: path.join(__dirname, 'bundle', 'definitions', val + '.d.ts')
-        });
-    });
+    require('./tasks/definitions')();
 });
 gulp.task('framework-build-base', function() { return require('./tasks/framework-build')() });
 gulp.task('framework-watch', function() { return require('./tasks/framework-watch')() });
