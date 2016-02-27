@@ -13,7 +13,7 @@ var bodyParser = require('body-parser');
 var _paramTypes_1 = require('../../../decorators/core/_paramTypes');
 var routeParams_1 = require('./routeParams');
 var bundle_1 = require('../../bundle');
-var log_1 = require('../debug/log');
+var logger_1 = require('../debug/logger');
 
 var Route = function Route(path, context, key) {
     var _this = this;
@@ -114,7 +114,7 @@ var RouteResponse = (function () {
             } else if (res.statusCode >= 500) {
                 status = status.red;
             }
-            log_1.Log.message(req.method.cyan.bold, status, req.path);
+            logger_1.Logger.info(req.method.cyan.bold, status, req.path);
         }
     }]);
 

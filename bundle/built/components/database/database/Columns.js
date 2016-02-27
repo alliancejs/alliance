@@ -6,7 +6,6 @@ var sequelize = require('sequelize');
 var database_1 = require('./database');
 var cols = [['string', sequelize.STRING], ['integer', sequelize.INTEGER], ['boolean', sequelize.BOOLEAN], ['char', sequelize.CHAR], ['text', sequelize.TEXT], ['bigint', sequelize.BIGINT], ['float', sequelize.FLOAT], ['real', sequelize.REAL], ['double', sequelize.DOUBLE], ['decimal', sequelize.DECIMAL], ['time', sequelize.TIME], ['date', sequelize.DATE], ['dateonly', sequelize.DATEONLY], ['hstore', sequelize.HSTORE], ['json', sequelize.JSON], ['jsonb', sequelize.JSONB], ['now', sequelize.NOW], ['blob', sequelize.BLOB], ['range', sequelize.RANGE], ['uuid', sequelize.UUID], ['uuidv4', sequelize.UUIDV4], ['virtual', sequelize.VIRTUAL], ['enum', sequelize.ENUM], ['array', sequelize.ARRAY], ['geometry', sequelize.GEOMETRY]];
 exports.Column = {};
-exports.ColumnType = {};
 var _iteratorNormalCompletion = true;
 var _didIteratorError = false;
 var _iteratorError = undefined;
@@ -25,7 +24,6 @@ try {
 
             return decorateColumn.apply(undefined, [value].concat(params));
         };
-        exports.ColumnType[key] = value;
     };
 
     for (var _iterator = cols[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {

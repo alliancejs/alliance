@@ -4,7 +4,7 @@
   "description": "Alliance Application",
   "author": "Author Name <your@email.com>",
   "dependencies": {
-    "alliance-bundle": "0.0.20-alpha.13"
+    "alliance-bundle": "0.0.20-alpha.15"
   },
   "typings": "./typings/tsd.d.ts",
   "typescript": {

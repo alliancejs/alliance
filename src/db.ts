@@ -15,4 +15,3 @@ export { Query } from './components/database/database/query';
 // library
 export { Sequelize as db }
 export { Column } from './components/database/database/columns';
-export { ColumnType } from './components/database/database/columns';

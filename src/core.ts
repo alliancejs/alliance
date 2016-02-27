@@ -11,4 +11,4 @@ export { BodyParam } from './decorators/core/bodyParam';
 export { AbstractController } from './components/core/controller/abstractController';
 
 // other
-export { Log } from './components/core/debug/log';
+export { Logger } from './components/core/debug/logger';

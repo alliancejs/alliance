@@ -1,6 +1,6 @@
 {
   "name":"alliance-bundle",
-  "version":"0.0.20-alpha.13",
+  "version":"0.0.20-alpha.15",
   "description":"Alliance Framework bundle",
   "author":"Eugene Pisotsky <revanscript@gmail.com>",
   "dependencies":{

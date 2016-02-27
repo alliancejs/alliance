@@ -15,7 +15,7 @@ import 'reflect-metadata';
 import config, { AppConfigDatasource } from 'alliance/config';
 import * as path  from 'path';
 import * as Sequelize  from 'sequelize';
-import { Log } from '../../core/debug/log';
+import { Logger } from '../../core/debug/logger';
 import { Table } from './table';
 
 import {

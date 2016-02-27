@@ -17,6 +17,4 @@ var query_1 = require('./components/database/database/query');
 exports.Query = query_1.Query;
 var columns_1 = require('./components/database/database/columns');
 exports.Column = columns_1.Column;
-var columns_2 = require('./components/database/database/columns');
-exports.ColumnType = columns_2.ColumnType;
 //# sourceMappingURL=db.js.map

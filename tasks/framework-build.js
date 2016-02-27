@@ -24,7 +24,7 @@ module.exports = function() {
 
     return merge([
         result.dts
-            .pipe(gulp.dest(path.join(__dirname, '..', 'bundle', 'definitions'))),
+            .pipe(gulp.dest(path.join(__dirname, '..', 'bundle', 'definitions', 'sources'))),
 
         result.js
             .pipe(babel({

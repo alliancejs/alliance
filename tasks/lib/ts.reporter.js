@@ -20,6 +20,8 @@ function defaultFinishHandler(results) {
     else if (hasError) {
         gutil.log('TypeScript: emit', gutil.colors.cyan('succeeded'), '(with errors)');
     }
+
+    semanticCounterFix = 0;
 }
 
 var errorShowed = false;

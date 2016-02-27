@@ -17,7 +17,7 @@ import * as bodyParser from 'body-parser';
 import { allianceBodyParser } from '../../../decorators/core/_paramTypes';
 import { RouteParams } from './routeParams';
 import { server } from '../../bundle';
-import { Log } from '../debug/log';
+import { Logger } from '../debug/logger';
 
 export class Route {
 
@@ -158,7 +158,7 @@ export class RouteResponse {
             status = status.red;
         }
 
-        Log.message(req.method.cyan.bold, status, req.path);
+        Logger.info(req.method.cyan.bold, status, req.path);
     }
 
 }

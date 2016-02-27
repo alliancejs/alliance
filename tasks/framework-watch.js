@@ -26,7 +26,7 @@ module.exports = function() {
 
         return merge([
             result.dts
-                .pipe(gulp.dest(path.join(__dirname, '..', 'bundle', 'definitions')))
+                .pipe(gulp.dest(path.join(__dirname, '..', 'bundle', 'definitions', 'sources')))
                 .on('end', function() {
                     require('./definitions')();
                 }),

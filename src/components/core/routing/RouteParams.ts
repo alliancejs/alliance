@@ -1,5 +1,4 @@
 import * as express from 'express';
-
 import { getParamNames } from '../../lib/paramNames';
 import { allianceParams, allianceParamsType, allianceParamAbstract } from '../../../decorators/core/_paramTypes';
 
@@ -18,9 +17,8 @@ export class RouteParams {
         if (Reflect.hasMetadata(allianceParams, this.target, this.key)) {
             this.paramNames = getParamNames(this.func);
 
-            let argsList = <allianceParamAbstract[]> Reflect.getMetadata(allianceParams, this.target, this.key).sort((a, b) => {
-                return a.parameterIndex > b.parameterIndex;
-            });
+            let argsList = <allianceParamAbstract[]> Reflect.getMetadata(allianceParams, this.target, this.key)
+                                                            .sort((a, b) => a.parameterIndex > b.parameterIndex);
 
             for (let arg of argsList) {
                 switch (arg.type) {
